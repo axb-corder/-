@@ -1,0 +1,8 @@
+{
+  "name": "닭잡고오리발 순천본점",
+  "description": "신선한 국내산 닭으로 요리한 닭요리전문점 '닭잡고오리발 순천본점' 공식 홈페이지 및 밀키트 온라인 간편 주문 시스템",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
