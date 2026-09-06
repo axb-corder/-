@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ReservationInquiry } from '../types';
 import { STORE_INFO } from '../data/mockData';
-import { X, CheckCircle2, AlertCircle, Utensils, Package, Phone, MessageCircle, ExternalLink, Instagram } from 'lucide-react';
+import { X, CheckCircle2, AlertCircle, Utensils, Package, Phone, MessageCircle, ExternalLink, Instagram, HelpCircle } from 'lucide-react';
 
 interface ReservationModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmitInquiry: (inquiry: ReservationInquiry) => void;
+  onOpenKakaoHelp?: () => void;
 }
 
 export const ReservationModal: React.FC<ReservationModalProps> = ({
   isOpen,
   onClose,
   onSubmitInquiry,
+  onOpenKakaoHelp,
 }) => {
   if (!isOpen) return null;
 
@@ -303,17 +305,29 @@ export const ReservationModal: React.FC<ReservationModalProps> = ({
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <a
-                  href={STORE_INFO.kakaoChannelUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 px-3.5 rounded-xl bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs active:scale-98"
-                  title="카카오톡 채널 1:1 상담 열기"
-                >
-                  <MessageCircle className="w-4 h-4 fill-[#191919]" />
-                  <span>카카오톡 문의</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-60 ml-0.5" />
-                </a>
+                <div className="flex items-center gap-1.5 w-full">
+                  <a
+                    href={STORE_INFO.kakaoChannelUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-3 px-3 rounded-xl bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs active:scale-98"
+                    title="카카오톡 상담 열기"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-[#191919]" />
+                    <span>카카오톡 문의</span>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-60 ml-0.5" />
+                  </a>
+                  {onOpenKakaoHelp && (
+                    <button
+                      type="button"
+                      onClick={onOpenKakaoHelp}
+                      className="p-3 rounded-xl bg-black/5 hover:bg-[#FEE500]/50 text-[#191919] transition-colors"
+                      title="카카오톡 안내 및 ID 복사"
+                    >
+                      <HelpCircle className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
 
                 <a
                   href={STORE_INFO.instagramUrl}

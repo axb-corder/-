@@ -3,11 +3,11 @@ import { Sparkles, ArrowRight, ShieldCheck, Flame, Clock, MapPin, Phone, Truck, 
 import { STORE_INFO } from '../data/mockData';
 
 interface HeroProps {
-  onOrderClick: () => void;
   onReservationClick: () => void;
+  onOpenKakaoHelp?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOrderClick, onReservationClick }) => {
+export const Hero: React.FC<HeroProps> = ({ onReservationClick, onOpenKakaoHelp }) => {
   const [heroImage, setHeroImage] = useState<string>(() => {
     return localStorage.getItem('dakjobgo_custom_spicy-dakbokkeum') || '/dakbokkeum-mealkit.png';
   });
@@ -57,25 +57,25 @@ export const Hero: React.FC<HeroProps> = ({ onOrderClick, onReservationClick }) 
 
             {/* CTA Group */}
             <div className="flex flex-wrap items-center gap-3.5 pt-1">
-              <button
-                id="hero-order-btn"
-                onClick={onOrderClick}
-                className="px-6 py-3.5 rounded-xl bg-[#C84B31] hover:bg-[#A93C25] text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md flex items-center gap-2 transition-all transform active:scale-95"
-              >
-                <span>밀키트 메뉴 주문하기</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
               <a
+                id="hero-smartstore-btn"
                 href={STORE_INFO.smartstoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3.5 rounded-xl bg-[#03C75A] hover:bg-[#02b150] text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md flex items-center gap-2 transition-all transform active:scale-95"
-                title="네이버 스마트스토어에서 구매하기"
+                className="px-6 py-3.5 rounded-xl bg-[#03C75A] hover:bg-[#02b150] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg flex items-center gap-2 transition-all transform active:scale-95"
+                title="네이버 스마트스토어에서 바로 주문 및 결제"
               >
-                <span className="font-black text-[12px] bg-white text-[#03C75A] w-4 h-4 rounded-xs flex items-center justify-center">N</span>
-                <span>스마트스토어로 구매</span>
+                <span className="font-black text-[13px] bg-white text-[#03C75A] w-5 h-5 rounded-xs flex items-center justify-center">N</span>
+                <span>스마트스토어 주문 & 결제</span>
                 <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+              </a>
+
+              <a
+                href="#mealkit-menu"
+                className="px-6 py-3.5 rounded-xl bg-[#2D2D2D] hover:bg-black text-white font-bold text-xs sm:text-sm shadow-sm flex items-center gap-2 transition-colors"
+              >
+                <span>밀키트 메뉴 구경하기</span>
+                <ArrowRight className="w-4 h-4" />
               </a>
 
               <a
@@ -93,10 +93,10 @@ export const Hero: React.FC<HeroProps> = ({ onOrderClick, onReservationClick }) 
               <button
                 id="hero-reservation-btn"
                 onClick={onReservationClick}
-                className="px-6 py-3.5 rounded-xl bg-[#2D2D2D] hover:bg-black text-white font-bold text-xs sm:text-sm shadow-sm flex items-center gap-2 transition-colors"
+                className="px-5 py-3.5 rounded-xl border border-[#2D2D2D]/20 hover:bg-[#F2EFE9] text-[#2D2D2D] font-bold text-xs sm:text-sm shadow-2xs flex items-center gap-2 transition-colors"
               >
                 <Phone className="w-4 h-4 text-[#C84B31]" />
-                <span>예약 및 단체 문의 ({STORE_INFO.phone})</span>
+                <span>예약 및 문의 ({STORE_INFO.phone})</span>
               </button>
             </div>
 
@@ -211,12 +211,15 @@ export const Hero: React.FC<HeroProps> = ({ onOrderClick, onReservationClick }) 
                     <div className="text-[11px] opacity-60">매장 포장 및 온라인 택배 상시 배송</div>
                   </div>
                 </div>
-                <button
-                  onClick={onOrderClick}
-                  className="text-xs font-bold text-[#C84B31] underline underline-offset-4 hover:opacity-80"
+                <a
+                  href={STORE_INFO.smartstoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-[#03C75A] hover:underline inline-flex items-center gap-1"
                 >
-                  주문하기
-                </button>
+                  <span>스토어 구매</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </div>
           </div>

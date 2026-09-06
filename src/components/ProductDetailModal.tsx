@@ -6,19 +6,16 @@ import { X, Check, Plus, Minus, ChefHat, Package, Award, ShieldAlert, AlertTrian
 interface ProductDetailModalProps {
   product: MealKitProduct | null;
   onClose: () => void;
-  onAddToCart: (product: MealKitProduct, options?: ProductOption[], quantity?: number) => void;
 }
 
 export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   product,
   onClose,
-  onAddToCart,
 }) => {
   if (!product) return null;
 
   const [selectedOptions, setSelectedOptions] = useState<ProductOption[]>([]);
   const [quantity, setQuantity] = useState(1);
-  const [addedSuccess, setAddedSuccess] = useState(false);
 
   useEffect(() => {
     setSelectedOptions([]);
@@ -36,15 +33,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const optionsTotalPrice = selectedOptions.reduce((sum, opt) => sum + opt.price, 0);
   const unitPrice = product.price + optionsTotalPrice;
   const totalPrice = unitPrice * quantity;
-
-  const handleAdd = () => {
-    onAddToCart(product, selectedOptions, quantity);
-    setAddedSuccess(true);
-    setTimeout(() => {
-      setAddedSuccess(false);
-      onClose();
-    }, 1000);
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#2D2D2D]/60 backdrop-blur-xs overflow-y-auto">
@@ -304,7 +292,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={onClose}
-              className="px-3 sm:px-4 py-3 rounded-xl border border-[#2D2D2D]/15 text-[#2D2D2D] text-xs sm:text-sm font-bold hover:bg-[#FCF9F4]"
+              className="px-4 sm:px-5 py-3 rounded-xl border border-[#2D2D2D]/15 text-[#2D2D2D] text-xs sm:text-sm font-bold hover:bg-[#FCF9F4]"
             >
               닫기
             </button>
@@ -312,30 +300,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               href={STORE_INFO.smartstoreUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3.5 sm:px-4 py-3 rounded-xl bg-[#03C75A] hover:bg-[#02b150] text-white text-xs sm:text-sm font-bold shadow-xs transition-all flex items-center gap-1.5 shrink-0"
+              className="px-5 sm:px-7 py-3 rounded-xl bg-[#03C75A] hover:bg-[#02b150] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2"
               title="네이버 스마트스토어에서 구매"
             >
-              <span className="font-black text-[12px] bg-white text-[#03C75A] w-4 h-4 rounded-xs flex items-center justify-center">N</span>
-              <span className="hidden sm:inline">스마트스토어 구매</span>
-              <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+              <span className="font-black text-[13px] bg-white text-[#03C75A] w-5 h-5 rounded-xs flex items-center justify-center">N</span>
+              <span>스마트스토어로 구매하기</span>
+              <ExternalLink className="w-4 h-4 opacity-90 ml-0.5" />
             </a>
-            <button
-              onClick={handleAdd}
-              className={`px-4 sm:px-6 py-3 rounded-xl text-xs sm:text-sm font-bold shadow-xs transition-all flex items-center gap-2 ${
-                addedSuccess
-                  ? 'bg-emerald-700 text-white'
-                  : 'bg-[#2D2D2D] hover:bg-[#C84B31] text-white'
-              }`}
-            >
-              {addedSuccess ? (
-                <>
-                  <Check className="w-4 h-4" />
-                  <span>담겼습니다!</span>
-                </>
-              ) : (
-                <span>장바구니 담기 ({quantity}개)</span>
-              )}
-            </button>
           </div>
         </div>
 

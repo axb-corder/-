@@ -14,7 +14,7 @@ export const STORE_INFO = {
   smartstoreUrl: 'https://smartstore.naver.com/dak_jap_o',
   instagramUrl: 'https://www.instagram.com/dak_jap_o',
   instagramHandle: '@dak_jap_o',
-  kakaoChannelUrl: 'https://pf.kakao.com/_xdakjapgo/chat', // 카카오톡 채널 1:1 채팅 상담 링크
+  kakaoChannelUrl: 'https://open.kakao.com/o/sHTA0iMi', // 카카오톡 오픈채팅 상담 링크
   kakaoChannelName: '닭잡고오리발',
   features: [
     { title: '100% 신선 국내산(하림) 닭고기', desc: '믿을 수 있는 100% 국내산 하림 닭고기만 엄선하여 잡내 없이 부드럽고 쫄깃한 육질을 자랑합니다.' },

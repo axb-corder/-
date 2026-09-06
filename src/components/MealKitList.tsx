@@ -4,13 +4,10 @@ import { MEAL_KIT_PRODUCTS, STORE_INFO } from '../data/mockData';
 import { Clock, Users, Flame, ShoppingBag, Eye, Check, Sparkles, Camera, RotateCcw, ExternalLink } from 'lucide-react';
 
 interface MealKitListProps {
-  onAddToCart: (product: MealKitProduct) => void;
   onOpenDetail: (product: MealKitProduct) => void;
 }
 
-export const MealKitList: React.FC<MealKitListProps> = ({ onAddToCart, onOpenDetail }) => {
-  const [addedNotice, setAddedNotice] = useState<string | null>(null);
-
+export const MealKitList: React.FC<MealKitListProps> = ({ onOpenDetail }) => {
   // Custom user uploaded images stored in localStorage
   const [customImages, setCustomImages] = useState<Record<string, string>>(() => {
     const images: Record<string, string> = {};
@@ -50,14 +47,6 @@ export const MealKitList: React.FC<MealKitListProps> = ({ onAddToCart, onOpenDet
       return next;
     });
     window.dispatchEvent(new CustomEvent('dakjobgo-product-image-updated', { detail: { productId, imageUrl: null } }));
-  };
-
-  const handleQuickAdd = (product: MealKitProduct) => {
-    onAddToCart(product);
-    setAddedNotice(product.id);
-    setTimeout(() => {
-      setAddedNotice(null);
-    }, 1800);
   };
 
   return (
@@ -102,8 +91,6 @@ export const MealKitList: React.FC<MealKitListProps> = ({ onAddToCart, onOpenDet
         {/* 3 Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {MEAL_KIT_PRODUCTS.map((product) => {
-            const isAdded = addedNotice === product.id;
-
             return (
               <div
                 key={product.id}
@@ -255,26 +242,16 @@ export const MealKitList: React.FC<MealKitListProps> = ({ onAddToCart, onOpenDet
                         <span>상세 설명</span>
                       </button>
 
-                      <button
-                        onClick={() => handleQuickAdd(product)}
-                        className={`py-2.5 px-3 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-xs ${
-                          isAdded
-                            ? 'bg-emerald-600 text-white'
-                            : 'bg-[#2D2D2D] hover:bg-[#C84B31] text-white active:scale-95'
-                        }`}
+                      <a
+                        href={STORE_INFO.smartstoreUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-2.5 px-3 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-xs bg-[#03C75A] hover:bg-[#02b150] text-white active:scale-95"
                       >
-                        {isAdded ? (
-                          <>
-                            <Check className="w-4 h-4" />
-                            <span>담김!</span>
-                          </>
-                        ) : (
-                          <>
-                            <ShoppingBag className="w-3.5 h-3.5" />
-                            <span>장바구니 담기</span>
-                          </>
-                        )}
-                      </button>
+                        <span className="font-black text-[11px] bg-white text-[#03C75A] w-4 h-4 rounded-xs flex items-center justify-center">N</span>
+                        <span>스마트스토어 주문</span>
+                        <ExternalLink className="w-3 h-3 opacity-80" />
+                      </a>
                     </div>
                   </div>
 
