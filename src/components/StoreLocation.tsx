@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { STORE_INFO } from '../data/mockData';
+import { STORE_INFO, STORE_IMAGE_CANDIDATES } from '../data/mockData';
 import { MapPin, Phone, Clock, Users, Car, Check, Copy, ExternalLink, CalendarPlus, Utensils, Camera, Upload, RotateCcw, Instagram } from 'lucide-react';
+import { SmartImage } from './SmartImage';
 
 interface StoreLocationProps {
   onOpenReservation: () => void;
@@ -51,12 +52,9 @@ export const StoreLocation: React.FC<StoreLocationProps> = ({ onOpenReservation 
     `${STORE_INFO.address} ${STORE_INFO.name}`
   )}`;
 
-  // Determine current image source: custom uploaded > /store-interior.png > default high-res retro interior
-  const currentImageSrc = customImage
-    ? customImage
-    : imageError
-    ? 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80'
-    : '/store-interior.png';
+  const storeCandidates = customImage
+    ? [customImage]
+    : STORE_IMAGE_CANDIDATES;
 
   return (
     <section id="offline-store" className="py-20 bg-[#FCF9F4] border-b border-[#2D2D2D]/10">
@@ -263,12 +261,10 @@ export const StoreLocation: React.FC<StoreLocationProps> = ({ onOpenReservation 
                 id="store-interior-upload"
               />
 
-              <img
-                src={currentImageSrc}
+              <SmartImage
+                candidates={storeCandidates}
                 alt={`${STORE_INFO.name} 매장 인테리어`}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-                referrerPolicy="no-referrer"
-                onError={() => setImageError(true)}
               />
 
               {/* Top Controls: Upload / Reset Photo Buttons */}

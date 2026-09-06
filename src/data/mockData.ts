@@ -2,6 +2,49 @@ import { MealKitProduct, ProductOption } from '../types';
 import ganjangJjimdakImg from '../assets/images/ganjang_jjimdak_1788664518535.jpg';
 import dakbokkeumtangImg from '../assets/images/dakbokkeumtang_1788664534103.jpg';
 import suncheonHotdogImg from '../assets/images/suncheon_hotdog_1788664552243.jpg';
+import dakjobgoStoreInteriorImg from '../assets/images/dakjobgo_store_interior_1788665418107.jpg';
+
+export const PRODUCT_IMAGE_CANDIDATES: Record<string, string[]> = {
+  'ganjang-jjimdak': [
+    '/간장찜닭.png',
+    '/images/간장찜닭.png',
+    '/images/ganjang.png',
+    '/ganjang.png',
+    ganjangJjimdakImg,
+  ],
+  'spicy-dakbokkeum': [
+    '/매콤 닭볶음탕.png',
+    '/매콤닭볶음탕.png',
+    '/images/매콤 닭볶음탕.png',
+    '/images/매콤닭볶음탕.png',
+    '/images/dakbokkeum.png',
+    '/dakbokkeum.png',
+    dakbokkeumtangImg,
+  ],
+  'suncheon-hotdog': [
+    '/순천만가든닭.png',
+    '/images/순천만가든닭.png',
+    '/images/hotdog.png',
+    '/hotdog.png',
+    suncheonHotdogImg,
+  ],
+};
+
+export const HERO_IMAGE_CANDIDATES: string[] = [
+  '/메인.png',
+  '/images/메인.png',
+  '/images/main.png',
+  '/main.png',
+  dakbokkeumtangImg,
+];
+
+export const STORE_IMAGE_CANDIDATES: string[] = [
+  '/매장내부.jpg',
+  '/images/매장내부.jpg',
+  '/images/store-interior.jpg',
+  '/store-interior.jpg',
+  dakjobgoStoreInteriorImg,
+];
 
 export const STORE_INFO = {
   name: '닭잡고오리발',

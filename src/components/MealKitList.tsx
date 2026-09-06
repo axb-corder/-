@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { MealKitProduct } from '../types';
-import { MEAL_KIT_PRODUCTS, STORE_INFO } from '../data/mockData';
+import { MEAL_KIT_PRODUCTS, STORE_INFO, PRODUCT_IMAGE_CANDIDATES } from '../data/mockData';
 import { Clock, Users, Flame, ShoppingBag, Eye, Check, Sparkles, Camera, RotateCcw, ExternalLink } from 'lucide-react';
+import { SmartImage } from './SmartImage';
 
 interface MealKitListProps {
   onOpenDetail: (product: MealKitProduct) => void;
@@ -103,20 +104,15 @@ export const MealKitList: React.FC<MealKitListProps> = ({ onOpenDetail }) => {
                 >
                   {(() => {
                     const customImg = customImages[product.id];
-                    const imgSrc = customImg || product.imageUrl;
+                    const candidates = customImg
+                      ? [customImg]
+                      : PRODUCT_IMAGE_CANDIDATES[product.id] || [product.imageUrl];
 
                     return (
-                      <img
-                        src={imgSrc}
+                      <SmartImage
+                        candidates={candidates}
                         alt={product.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          if (target.src !== product.imageUrl) {
-                            target.src = product.imageUrl;
-                          }
-                        }}
                       />
                     );
                   })()}

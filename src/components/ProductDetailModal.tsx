@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MealKitProduct, ProductOption } from '../types';
-import { EXTRA_OPTIONS, STORE_INFO } from '../data/mockData';
+import { EXTRA_OPTIONS, STORE_INFO, PRODUCT_IMAGE_CANDIDATES } from '../data/mockData';
 import { X, Check, Plus, Minus, ChefHat, Package, Award, ShieldAlert, AlertTriangle, Lightbulb, ExternalLink } from 'lucide-react';
+import { SmartImage } from './SmartImage';
 
 interface ProductDetailModalProps {
   product: MealKitProduct | null;
@@ -64,20 +65,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="sm:col-span-5 rounded-2xl overflow-hidden shadow-xs border border-[#2D2D2D]/10 aspect-4/3 bg-[#2D2D2D] relative">
               {(() => {
                 const customImg = localStorage.getItem(`dakjobgo_custom_${product.id}`);
-                const displayImg = customImg || product.imageUrl;
+                const candidates = customImg
+                  ? [customImg]
+                  : PRODUCT_IMAGE_CANDIDATES[product.id] || [product.imageUrl];
 
                 return (
-                  <img
-                    src={displayImg}
+                  <SmartImage
+                    candidates={candidates}
                     alt={product.name}
                     className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      if (target.src !== product.imageUrl) {
-                        target.src = product.imageUrl;
-                      }
-                    }}
                   />
                 );
               })()}

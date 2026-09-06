@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, ArrowRight, ShieldCheck, Flame, Clock, MapPin, Phone, Truck, ExternalLink, Instagram } from 'lucide-react';
-import { STORE_INFO } from '../data/mockData';
-import dakbokkeumtangImg from '../assets/images/dakbokkeumtang_1788664534103.jpg';
+import { STORE_INFO, HERO_IMAGE_CANDIDATES } from '../data/mockData';
+import { SmartImage } from './SmartImage';
 
 interface HeroProps {
   onReservationClick: () => void;
@@ -9,20 +9,22 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onReservationClick, onOpenKakaoHelp }) => {
-  const [heroImage, setHeroImage] = useState<string>(() => {
-    return localStorage.getItem('dakjobgo_custom_spicy-dakbokkeum') || dakbokkeumtangImg;
+  const [customHero, setCustomHero] = useState<string | null>(() => {
+    return localStorage.getItem('dakjobgo_custom_spicy-dakbokkeum');
   });
 
   useEffect(() => {
     const handleUpdate = (e: Event) => {
       const customEvent = e as CustomEvent;
       if (customEvent.detail?.productId === 'spicy-dakbokkeum') {
-        setHeroImage(customEvent.detail.imageUrl || dakbokkeumtangImg);
+        setCustomHero(customEvent.detail.imageUrl || null);
       }
     };
     window.addEventListener('dakjobgo-product-image-updated', handleUpdate);
     return () => window.removeEventListener('dakjobgo-product-image-updated', handleUpdate);
   }, []);
+
+  const heroCandidates = customHero ? [customHero] : HERO_IMAGE_CANDIDATES;
   return (
     <section className="relative overflow-hidden bg-[#FCF9F4] text-[#2D2D2D] border-b border-[#2D2D2D]/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-24">
@@ -172,17 +174,10 @@ export const Hero: React.FC<HeroProps> = ({ onReservationClick, onOpenKakaoHelp 
             <div className="relative mx-auto max-w-md lg:max-w-none space-y-4">
               {/* Primary Dish Card */}
               <div className="relative rounded-3xl overflow-hidden shadow-md border border-[#2D2D2D]/10 bg-white group">
-                <img
-                  src={heroImage}
+                <SmartImage
+                  candidates={heroCandidates}
                   alt={`${STORE_INFO.name} 대표 수제 닭볶음탕 & 찜닭 밀키트`}
                   className="w-full h-72 sm:h-80 object-cover transition-transform duration-500 group-hover:scale-102"
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (target.src !== dakbokkeumtangImg) {
-                      target.src = dakbokkeumtangImg;
-                    }
-                  }}
                 />
                 <div className="p-6 bg-white space-y-2">
                   <div className="flex items-center justify-between">
