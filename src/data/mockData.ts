@@ -1,7 +1,8 @@
 import { MealKitProduct, ProductOption } from '../types';
-import ganjangJjimdakImg from '../assets/images/ganjang_jjimdak_1788664518535.jpg';
-import dakbokkeumtangImg from '../assets/images/dakbokkeumtang_1788664534103.jpg';
-import suncheonHotdogImg from '../assets/images/suncheon_hotdog_1788664552243.jpg';
+import realGanjangJjimdakImg from '../assets/images/real_ganjang_jjimdak_1788670794695.jpg';
+import realDakbokkeumtangImg from '../assets/images/real_dakbokkeumtang_1788670816591.jpg';
+import realHeroChickenImg from '../assets/images/real_hero_chicken_1788670835204.jpg';
+import realSuncheonHotdogImg from '../assets/images/real_suncheon_hotdog_1788670858118.jpg';
 import dakjobgoRetroInteriorImg from '../assets/images/dakjobgo_retro_interior_1788666901010.jpg';
 
 export const PRODUCT_IMAGE_CANDIDATES: Record<string, string[]> = {
@@ -10,7 +11,7 @@ export const PRODUCT_IMAGE_CANDIDATES: Record<string, string[]> = {
     '/images/간장찜닭.png',
     '/images/ganjang.png',
     '/ganjang.png',
-    ganjangJjimdakImg,
+    realGanjangJjimdakImg,
   ],
   'spicy-dakbokkeum': [
     '/매콤 닭볶음탕.png',
@@ -19,14 +20,14 @@ export const PRODUCT_IMAGE_CANDIDATES: Record<string, string[]> = {
     '/images/매콤닭볶음탕.png',
     '/images/dakbokkeum.png',
     '/dakbokkeum.png',
-    dakbokkeumtangImg,
+    realDakbokkeumtangImg,
   ],
   'suncheon-hotdog': [
     '/순천만가든닭.png',
     '/images/순천만가든닭.png',
     '/images/hotdog.png',
     '/hotdog.png',
-    suncheonHotdogImg,
+    realSuncheonHotdogImg,
   ],
 };
 
@@ -35,7 +36,7 @@ export const HERO_IMAGE_CANDIDATES: string[] = [
   '/images/메인.png',
   '/images/main.png',
   '/main.png',
-  dakbokkeumtangImg,
+  realHeroChickenImg,
 ];
 
 export const STORE_IMAGE_CANDIDATES: string[] = [
@@ -91,7 +92,7 @@ export const MEAL_KIT_PRODUCTS: MealKitProduct[] = [
     storage: '0~10℃ 냉장보관 (바로 조리하지 않을 경우 냉장보관하시고 3일 내에 드세요)',
     spicyOptions: ['단짠단짠 기본맛', '매콤칼칼맛'],
     tags: ['국내산하림닭', '단짠단짠', '닭고기45%', '2.3kg푸짐', '20분완성'],
-    imageUrl: ganjangJjimdakImg,
+    imageUrl: realGanjangJjimdakImg,
     cookingTime: '20분 조리',
     difficulty: '쉬움',
     highlight: '국내산 하림 닭고기 45% + 비법 찜닭소스 + 감자/고구마/당근 + 쫄깃 당면 (2.3kg 대용량)',
@@ -145,7 +146,7 @@ export const MEAL_KIT_PRODUCTS: MealKitProduct[] = [
     storage: '0~10℃ 냉장보관 (바로 조리하지 않을 경우 냉장보관하시고 3일 내에 드세요)',
     spicyOptions: ['매콤달달 기본맛', '칼칼한 매운맛', '화끈매운맛'],
     tags: ['국내산하림닭', '매콤달달', '3단계완성', '2kg푸짐', '20분완성'],
-    imageUrl: dakbokkeumtangImg,
+    imageUrl: realDakbokkeumtangImg,
     cookingTime: '20분 조리',
     difficulty: '쉬움',
     highlight: '신선 100% 국내산 하림 닭고기 + 비법 매콤달달 특제소스 + 신선 채소 (2kg 푸짐한 한 그릇의 행복)',
@@ -197,7 +198,7 @@ export const MEAL_KIT_PRODUCTS: MealKitProduct[] = [
     storage: '0~10℃ 냉장보관 (수령 후 가급적 빠른 시일 내 조리해 드세요)',
     spicyOptions: ['달콤 매실BBQ맛', '매콤 핫BBQ맛', '반반 세트'],
     tags: ['숯불닭바베큐', '미나리슬로우', '미나리살사', '매실BBQ', '5분완성', '순천특화'],
-    imageUrl: suncheonHotdogImg,
+    imageUrl: realSuncheonHotdogImg,
     cookingTime: '5분 간편 조리',
     difficulty: '쉬움',
     highlight: '특제 숯불 닭바베큐 + 상큼 미나리슬로우 + 미나리살사소스 + 매실/핫 BBQ소스 (5분 완성)',

@@ -104,15 +104,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 >
                   <div className="flex items-start justify-between gap-3">
                     <img
-                      src={localStorage.getItem(`dakjobgo_custom_${item.product.id}`) || (item.product.id === 'spicy-dakbokkeum' ? '/dakbokkeum-mealkit.png' : item.product.imageUrl)}
+                      src={localStorage.getItem(`dakjobgo_custom_${item.product.id}`) || item.product.imageUrl}
                       alt={item.product.name}
                       className="w-16 h-16 rounded-xl object-cover shrink-0 bg-[#F2EFE9]"
                       referrerPolicy="no-referrer"
                       onError={(e) => {
                         const target = e.currentTarget;
-                        const fallback = 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=300&q=80';
-                        if (target.src !== fallback) {
-                          target.src = fallback;
+                        if (target.src !== item.product.imageUrl) {
+                          target.src = item.product.imageUrl;
                         }
                       }}
                     />
