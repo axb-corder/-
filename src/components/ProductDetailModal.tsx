@@ -64,10 +64,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="sm:col-span-5 rounded-2xl overflow-hidden shadow-xs border border-[#2D2D2D]/10 aspect-4/3 bg-[#2D2D2D] relative">
               {(() => {
                 const customImg = localStorage.getItem(`dakjobgo_custom_${product.id}`);
-                const fallbackImg = product.id === 'spicy-dakbokkeum'
-                  ? 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=900&q=80'
-                  : product.imageUrl;
-                const displayImg = customImg || (product.id === 'spicy-dakbokkeum' ? '/dakbokkeum-mealkit.png' : product.imageUrl);
+                const displayImg = customImg || product.imageUrl;
 
                 return (
                   <img
@@ -77,8 +74,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.currentTarget;
-                      if (target.src !== fallbackImg) {
-                        target.src = fallbackImg;
+                      if (target.src !== product.imageUrl) {
+                        target.src = product.imageUrl;
                       }
                     }}
                   />

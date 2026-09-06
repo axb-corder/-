@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, ArrowRight, ShieldCheck, Flame, Clock, MapPin, Phone, Truck, ExternalLink, Instagram } from 'lucide-react';
 import { STORE_INFO } from '../data/mockData';
+import dakbokkeumtangImg from '../assets/images/dakbokkeumtang_1788664534103.jpg';
 
 interface HeroProps {
   onReservationClick: () => void;
@@ -9,14 +10,14 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onReservationClick, onOpenKakaoHelp }) => {
   const [heroImage, setHeroImage] = useState<string>(() => {
-    return localStorage.getItem('dakjobgo_custom_spicy-dakbokkeum') || '/dakbokkeum-mealkit.png';
+    return localStorage.getItem('dakjobgo_custom_spicy-dakbokkeum') || dakbokkeumtangImg;
   });
 
   useEffect(() => {
     const handleUpdate = (e: Event) => {
       const customEvent = e as CustomEvent;
       if (customEvent.detail?.productId === 'spicy-dakbokkeum') {
-        setHeroImage(customEvent.detail.imageUrl || '/dakbokkeum-mealkit.png');
+        setHeroImage(customEvent.detail.imageUrl || dakbokkeumtangImg);
       }
     };
     window.addEventListener('dakjobgo-product-image-updated', handleUpdate);
@@ -178,9 +179,8 @@ export const Hero: React.FC<HeroProps> = ({ onReservationClick, onOpenKakaoHelp 
                   referrerPolicy="no-referrer"
                   onError={(e) => {
                     const target = e.currentTarget;
-                    const fallback = 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=1000&q=80';
-                    if (target.src !== fallback) {
-                      target.src = fallback;
+                    if (target.src !== dakbokkeumtangImg) {
+                      target.src = dakbokkeumtangImg;
                     }
                   }}
                 />
