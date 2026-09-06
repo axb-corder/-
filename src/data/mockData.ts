@@ -2,7 +2,7 @@ import { MealKitProduct, ProductOption } from '../types';
 import ganjangJjimdakImg from '../assets/images/ganjang_jjimdak_1788664518535.jpg';
 import dakbokkeumtangImg from '../assets/images/dakbokkeumtang_1788664534103.jpg';
 import suncheonHotdogImg from '../assets/images/suncheon_hotdog_1788664552243.jpg';
-import dakjobgoStoreInteriorImg from '../assets/images/dakjobgo_store_interior_1788665418107.jpg';
+import dakjobgoRetroInteriorImg from '../assets/images/dakjobgo_retro_interior_1788666901010.jpg';
 
 export const PRODUCT_IMAGE_CANDIDATES: Record<string, string[]> = {
   'ganjang-jjimdak': [
@@ -43,7 +43,7 @@ export const STORE_IMAGE_CANDIDATES: string[] = [
   '/images/매장내부.jpg',
   '/images/store-interior.jpg',
   '/store-interior.jpg',
-  dakjobgoStoreInteriorImg,
+  dakjobgoRetroInteriorImg,
 ];
 
 export const STORE_INFO = {
