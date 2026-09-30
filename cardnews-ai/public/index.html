@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>카드뉴스 AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>🪄 카드뉴스 AI</h1>
+    <p>주제를 쓰거나 유튜브 링크를 넣으면 AI가 카드뉴스를 만들어 드려요.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <label>유튜브 링크 <small>(선택)</small></label>
+      <div class="row">
+        <input id="ytUrl" placeholder="https://youtube.com/shorts/..." />
+        <button id="ytBtn" class="ghost">불러오기</button>
+      </div>
+      <div id="ytInfo" class="yt-info hidden"></div>
+
+      <label>영상 내용 / 자막 <small>(자동으로 못 가져오면 직접 붙여넣기)</small></label>
+      <textarea id="transcript" rows="4" placeholder="영상에서 말한 내용을 붙여넣어도 돼요"></textarea>
+
+      <label>주제</label>
+      <input id="topic" placeholder="예: 소상공인이 챗GPT로 매출 올리는 3가지 방법" />
+
+      <label>추가 요청 <small>(선택)</small></label>
+      <textarea id="notes" rows="3" placeholder="예: 매장 사장님 대상, 마지막 장에 '저장해 두세요' 넣어줘"></textarea>
+
+      <div class="row two">
+        <div>
+          <label>말투</label>
+          <select id="tone">
+            <option>친근한 반말</option>
+            <option>친절한 존댓말</option>
+            <option>전문가 느낌</option>
+            <option>유머러스하게</option>
+          </select>
+        </div>
+        <div>
+          <label>장수</label>
+          <select id="cardCount">
+            <option>4</option><option>5</option><option selected>6</option>
+            <option>7</option><option>8</option><option>10</option>
+          </select>
+        </div>
+      </div>
+
+      <label>디자인</label>
+      <div id="themes" class="themes"></div>
+
+      <button id="genBtn" class="primary">✨ 카드뉴스 만들기</button>
+      <p id="status" class="status"></p>
+    </section>
+
+    <section class="result">
+      <div class="result-head">
+        <h2>미리보기 <small>글자를 눌러서 바로 고칠 수 있어요</small></h2>
+        <button id="dlAll" class="ghost" disabled>전체 PNG 저장</button>
+      </div>
+      <div id="cards" class="cards">
+        <div class="empty">왼쪽에 내용을 넣고 <b>카드뉴스 만들기</b>를 눌러 주세요.</div>
+      </div>
+
+      <div id="captionBox" class="caption hidden">
+        <div class="result-head">
+          <h2>캡션 & 해시태그</h2>
+          <button id="copyCaption" class="ghost">복사</button>
+        </div>
+        <textarea id="caption" rows="8"></textarea>
+      </div>
+    </section>
+  </main>
+
+  <script src="/vendor/html2canvas.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
