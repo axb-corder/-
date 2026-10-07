@@ -1,0 +1,15 @@
+{
+  "name": "suncheon-flyover",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "순천시 미니어처 도시 3D 비행 영상 (Three.js, 30초 1920x1080)",
+  "scripts": {
+    "serve": "node serve.js",
+    "render": "node render.js"
+  },
+  "dependencies": {
+    "@fontsource/noto-sans-kr": "^5.2.5",
+    "three": "^0.180.0"
+  }
+}
